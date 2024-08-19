@@ -4,7 +4,6 @@ import Nodemailer from "next-auth/providers/nodemailer";
 import prisma from "./prisma";
 import { compare } from "bcrypt";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { createTransport } from "nodemailer";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
