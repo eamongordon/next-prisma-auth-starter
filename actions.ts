@@ -1,3 +1,5 @@
+"use server";
+
 import { hash } from "bcrypt";
 import prisma from "./prisma";
 import { auth } from "./auth";
@@ -39,7 +41,7 @@ export const editUser = async (
     }
 };
 
-export const createUser = async (userdata: { email: string; password: string; name: string }) => {
+export const createUser = async (userdata: { email: string; password: string; name?: string }) => {
     const { email, password, name } = userdata;
 
     try {
