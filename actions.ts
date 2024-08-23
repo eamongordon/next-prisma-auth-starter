@@ -24,7 +24,7 @@ export const editUser = async (
                 id: session.user.id,
             },
             data: {
-                [key]: value,
+                [key]: savedValue,
             },
         });
         return response;
