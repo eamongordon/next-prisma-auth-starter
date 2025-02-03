@@ -12,18 +12,11 @@ export default {
     adapter: PrismaAdapter(prisma),
     session: { strategy: "jwt" },
     callbacks: {
-        jwt: async ({ token, user, trigger, session }) => {
+        jwt: async ({ token, trigger, session }) => {
             if (trigger === "update") {
                 const sessionKeyList = Object.keys(session);
                 sessionKeyList.forEach(async (key) => {
                     token[key] = session[key];
-                    //@ts-expect-error;
-                    if (token?.user && token?.user[key]) {
-                        if (key !== 'password') {
-                            //@ts-expect-error;
-                            token.user[key] = session[key];
-                        }
-                    }
                 });
             }
             return token;
