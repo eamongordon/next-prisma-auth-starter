@@ -21,15 +21,16 @@ export default {
             }
             return token;
         },
-        signIn: async ({ user, profile }) => {
-            if (!profile) {
+        signIn: async ({ user, email }) => {
+            if (email?.verificationRequest) {
+                //if email provider is used and user exists in table, send a magic link
                 const userExists = await prisma.user.findUnique({
                     where: {
                         email: user.email || undefined
                     },
                 });
                 if (userExists) {
-                    return true;   //if the email exists in the User collection, email them a magic login link
+                    return true;
                 } else {
                     return false;
                 }
